@@ -73,6 +73,26 @@ host.docker.internal
 
 *Todos os users e senhas estão configurados como "default".* 
 
+### 6.1 Troubleshooting WAHA no n8n
+
+1. Host URL da credencial WAHA no n8n:
+```bash
+http://waha:3000
+```
+2. API Key da credencial WAHA no n8n:
+- Deve ser igual ao valor de `WAHA_API_KEY` no `docker-compose.yml`
+- Se estiver vazia ou incorreta, o teste retorna `401 Unauthorized`
+
+3. Webhook no n8n:
+- O WAHA envia evento com método `POST`, então o Webhook node deve aceitar `POST`
+- A URL de produção (`/webhook/...`) só funciona com workflow ativo
+- A URL de teste (`/webhook-test/...`) exige clicar em "Listen for test event"
+
+Erros comuns:
+- `401 Unauthorized`: API Key ausente/incorreta
+- `ENOTFOUND`: host inválido/inacessível
+- `The requested webhook "POST ... is not registered"`: método/path divergente ou workflow inativo
+
 *Exemplo:*
 
 ![Conectando credenciais](./imagens/passo6.gif)
@@ -117,6 +137,9 @@ Parabéns! Você agora tem uma estrutura completa para criar seu Agente de IA de
 ## Recursos Adicionais
 
 - [Documentação do WAHA](https://waha.devlike.pro/docs/overview/introduction)
+- [WAHA - API Authentication](https://waha.devlike.pro/docs/how-to/authentication)
+- [n8n - Webhook node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/)
+- [Docker - Networking overview](https://docs.docker.com/network/)
 
 ---
 

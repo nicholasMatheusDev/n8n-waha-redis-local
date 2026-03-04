@@ -27,16 +27,17 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
 
   waha:
     image: devlikeapro/waha:latest
     platform: linux/amd64
     environment:
-      WHATSAPP_HOOK_URL: http://host.docker.internal:5678/webhook/webhook
+      WHATSAPP_HOOK_URL: http://n8n:5678/webhook/webhook
       WHATSAPP_DEFAULT_ENGINE: GOWS
       WHATSAPP_HOOK_EVENTS: message
-      WAHA_NO_API_KEY: true
+      WAHA_API_KEY: AIzaSyDOdBbNq3TaLcjRm3c9oF0lh9H19CKT5bI
+      WAHA_NO_API_KEY: false
       WAHA_DASHBOARD_NO_PASSWORD: true
       WHATSAPP_SWAGGER_NO_PASSWORD: true
     volumes:
@@ -51,6 +52,7 @@ services:
     environment:
       WEBHOOK_URL: http://host.docker.internal:5678
       N8N_HOST: host.docker.internal
+      WAHA_BASE_URL: http://waha:3000
       GENERIC_TIMEZONE: America/Sao_Paulo
       N8N_LOG_LEVEL: debug
       N8N_SECURE_COOKIE: false
