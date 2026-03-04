@@ -143,4 +143,4 @@ Parabéns! Você agora tem uma estrutura completa para criar seu Agente de IA de
 
 ---
 
-*Última atualização: 07/05/2025*
+*Última atualização: 04/03/2026*
